@@ -8,13 +8,14 @@ import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
+import Header from "./components/header";
 
 const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
-  title: "Clerk Onboarding Sample App",
+  title: "Writers Hub - Get Writing Job, Quickly",
   description:
-    " A simple sample app featuring an onboarding flow powered by Clerk.",
+    " A writers app for job application Secured by Clerk.",
   openGraph: { images: ["/og.png"] },
 };
 
@@ -28,22 +29,27 @@ export default function RootLayout({
       <ClerkProvider >
         <body className={`${inter.className} min-h-screen flex flex-col`}>
 
-          <header className="flex items-center h-20 gap-4 px-4 border-b border-black border-solid sm:px-8 border-opacity-20">
-            <Link href="/" className="flex items-center h-20 gap-2 sm:gap-4">
-              <Image
-                src="/clerk.svg"
-                alt="Clerk Logo"
-                width={102}
-                height={32}
-                priority
-              />
-            </Link>
-            <div className="grow" />
-
-            <SignedIn>
-              <UserButton afterSignOutUrl="/" />
-            </SignedIn>
-          </header>
+        <header className="flex items-center h-20 gap-4 px-4 border-b border-black border-solid sm:px-8 border-opacity-20">
+  <div className="flex items-center gap-2 sm:gap-4">
+    <Link href="/">
+      <Image
+        src="/writer.png"
+        alt="Writers Hub Logo"
+        width={102}
+        height={32}
+        priority
+      />
+    </Link>
+  </div>
+  <div className="flex-grow flex justify-center">
+    <Header />
+  </div>
+  <div>
+    <SignedIn>
+      <UserButton afterSignOutUrl="/" />
+    </SignedIn>
+  </div>
+</header>
 
 
 
@@ -51,12 +57,7 @@ export default function RootLayout({
 
 
           <footer className="flex items-center h-20 gap-1 px-8 font-medium border-t md:px-20">
-            <a 
-              className="flex gap-2 px-3 py-2 text-m font-semibold text-gray-600 transition duration-100 rounded-md hover:text-gray-800" 
-              href="https://github.com/clerk/clerk-nextjs-onboarding-sample-app"
-            >
-            <span className="hidden sm:inline">View the Github Repo for this Sample App</span>
-            </a>
+          
       
             <nav className="flex justify-end grow sm:gap-2">
               <a
@@ -185,5 +186,4 @@ function Discord() {
     </svg>
   );
 }
-
 

@@ -13,8 +13,17 @@ const config: Config = {
         'gradient-conic':
           'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
+      colors: {
+        gold: '#FFD700', // Define the gold color
+      },
     },
   },
   plugins: [require("tailwindcss-animate")],
 }
 export default config
+
+
+
+
+
+
