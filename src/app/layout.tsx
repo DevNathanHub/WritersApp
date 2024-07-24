@@ -9,6 +9,9 @@ import Image from "next/image";
 import Link from "next/link";
 import { Metadata } from "next";
 import Header from "./components/header";
+import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import { extractRouterConfig } from "uploadthing/server";
+import { ourFileRouter } from "./api/uploadthing/core";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -28,7 +31,15 @@ export default function RootLayout({
     <html lang="en">
       <ClerkProvider >
         <body className={`${inter.className} min-h-screen flex flex-col`}>
-
+        <NextSSRPlugin
+          /**
+           * The `extractRouterConfig` will extract **only** the route configs
+           * from the router to prevent additional information from being
+           * leaked to the client. The data passed to the client is the same
+           * as if you were to fetch `/api/uploadthing` directly.
+           */
+          routerConfig={extractRouterConfig(ourFileRouter)}
+        />
         <header className="flex items-center h-20 gap-4 px-4 border-b border-black border-solid sm:px-8 border-opacity-20">
   <div className="flex items-center gap-2 sm:gap-4">
     <Link href="/">
